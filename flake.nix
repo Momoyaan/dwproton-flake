@@ -16,8 +16,8 @@
     };
   in {
     packages.${system} = {
-      default = self.packages.${system}.proton-cachyos;
-      proton-cachyos = pkgs.callPackage ./default.nix {};
+      default = self.packages.${system}.dw-proton;
+      dw-proton = pkgs.callPackage ./default.nix {};
     };
 
     devShells.${system}.default = pkgs.mkShell {

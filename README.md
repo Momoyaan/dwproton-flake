@@ -1,10 +1,10 @@
-# CachyOS Proton for Nix
+# DW-Proton for Nix
 
-A Nix flake that packages the latest [CachyOS Proton](https://cachyos.org/) compatibility layer for Steam Play.
+A Nix flake that packages the latest [DW-Proton](https://dawn.wine/) compatibility layer for Steam Play.
 
 ## Features
 
-- Automatically tracks the latest CachyOS Proton releases
+- Automatically tracks the latest DW-Proton releases
 - Daily GitHub Actions workflow to check for updates
 - Simple flake-based installation
 
@@ -14,10 +14,10 @@ A Nix flake that packages the latest [CachyOS Proton](https://cachyos.org/) comp
 
 ```bash
 # Test the package
-nix run github:jackgrahn/cachy-proton-nix
+nix run github:Momoyaan/dwproton-flake
 
 # Install to your profile
-nix profile install github:jackgrahn/cachy-proton-nix
+nix profile install github:Momoyaan/dwproton-flake
 ```
 
 ### NixOS Configuration
@@ -28,22 +28,14 @@ Add to your `flake.nix`:
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    cachy-proton.url = "github:jackgrahn/cachy-proton-nix";
+    cachy-proton.url = "github:Momoyaan/dwproton-flake";
   };
 
   outputs = { self, nixpkgs, cachy-proton, ... }: {
     nixosConfigurations.yourhostname = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [
-        {
-          programs.steam = {
-            enable = true;
-            extraCompatPackages = [
-              cachy-proton.packages.x86_64-linux.proton-cachyos
-            ];
-          };
-        }
-      ];
+     ...
+
     };
   };
 }
@@ -61,8 +53,8 @@ nix build
 
 ## Updates
 
-This flake automatically checks for new CachyOS Proton releases daily and creates pull requests when updates are available.
+This flake automatically checks for new DW-Proton releases daily and creates pull requests when updates are available.
 
 ## License
 
-This packaging is provided under the MIT license. CachyOS Proton itself may contain proprietary components.
+This packaging is provided under the MIT license. DW-Proton itself may contain proprietary components.
