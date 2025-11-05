@@ -9,7 +9,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   src = fetchzip {
     url = "https://dawn.wine/dawn-winery/dwproton/releases/dwproton-${finalAttrs.version}/dwproton-${finalAttrs.version}-x86_64.tar.xz";
-    hash = "sha256-HVNR/F+qi75zxXx2BH6JWZAcHxbuDUFc6oN8VvLju2A=";
+    hash = "sha256-PX/X3f1NcHvj32t1JhtAP/HcfJkzQm+KN3oLtcYoOds=";
   };
 
   dontUnpack = true;
