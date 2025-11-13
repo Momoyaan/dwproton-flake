@@ -109,7 +109,7 @@ jobs:
         if: steps.check_version.outputs.update_needed == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
           commit-message: "Update dwproton to ${{ steps.check_version.outputs.latest_version }}"
           title: "Update dwproton to ${{ steps.check_version.outputs.latest_version }}"
           body: |
