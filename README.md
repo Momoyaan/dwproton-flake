@@ -10,36 +10,35 @@ A Nix flake that packages the latest [DW-Proton](https://dawn.wine/) compatibili
 
 ## Usage
 
-### With Nix Flakes
+### NixOS
 
-```bash
-# Test the package
-nix run github:Momoyaan/dwproton-flake
-
-# Install to your profile
-nix profile install github:Momoyaan/dwproton-flake
-```
-
-### NixOS Configuration
-
-Add to your `flake.nix`:
+Add the flake to your inputs and add the package to `programs.steam.extraCompatPackages`. Note that you must select the `steamcompattool` output:
 
 ```nix
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    dw-proton.url = "github:Momoyaan/dwproton-flake";
+    dw-proton.url = "github:imaviso/dwproton-flake";
   };
 
   outputs = { self, nixpkgs, dw-proton, ... }: {
     nixosConfigurations.yourhostname = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-     ...
-
+      modules = [
+        ({ pkgs, ... }: {
+          programs.steam = {
+            enable = true;
+            extraCompatPackages = [
+              dw-proton.packages.x86_64-linux.dw-proton.steamcompattool
+            ];
+          };
+        })
+      ];
     };
   };
 }
 ```
+
 
 ## Development
 
